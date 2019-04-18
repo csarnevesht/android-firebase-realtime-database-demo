@@ -12,6 +12,7 @@ public class Trophy {
     private String sport;
     private String year;
     private String description;
+    private String image;
 
     public Trophy(){
 
@@ -53,6 +54,14 @@ public class Trophy {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getImageUrl() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

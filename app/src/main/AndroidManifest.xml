@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="mchehab.com.firebasedemo">
 
+    <!-- add internet permission -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--External storage permission-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--Wallpaper permission-->
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

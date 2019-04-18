@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton fab;
     private ListView listView;
-    private ListViewAdapter listViewAdapter;
+    private TrophyListViewAdapter listViewAdapter;
     private List<Trophy> listTrophy = new ArrayList<>();
 
     private ProgressBar progressBar;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setListViewAdapter(){
-        listViewAdapter = new ListViewAdapter(this, listTrophy);
+        listViewAdapter = new TrophyListViewAdapter(this, listTrophy);
         listView.setAdapter(listViewAdapter);
     }
 
