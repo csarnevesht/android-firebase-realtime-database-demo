@@ -1,13 +1,11 @@
 package mchehab.com.firebasedemo;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -22,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private ListView listView;
     private ListViewAdapter listViewAdapter;
-    private List<Person> listPerson = new ArrayList<>();
+    private List<Trophy> listPerson = new ArrayList<>();
 
     private ProgressBar progressBar;
 
@@ -70,21 +67,21 @@ public class MainActivity extends AppCompatActivity {
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Person person = dataSnapshot.getValue(Person.class);
+                Trophy person = dataSnapshot.getValue(Trophy.class);
                 if(person != null){
                     person.setKey(dataSnapshot.getKey());
-                    listPerson.add(dataSnapshot.getValue(Person.class));
+                    listPerson.add(dataSnapshot.getValue(Trophy.class));
                     listViewAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Person person = dataSnapshot.getValue(Person.class);
+                Trophy person = dataSnapshot.getValue(Trophy.class);
                 if(person != null){
                     String key = dataSnapshot.getKey();
                     for(int i=0;i<listPerson.size();i++){
-                        Person person1 = listPerson.get(i);
+                        Trophy person1 = listPerson.get(i);
                         if(person1.getKey().equals(key)){
                             listPerson.set(i, person);
                             listViewAdapter.notifyDataSetChanged();
@@ -96,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                listPerson.remove(dataSnapshot.getValue(Person.class));
+                listPerson.remove(dataSnapshot.getValue(Trophy.class));
                 listViewAdapter.notifyDataSetChanged();
             }
 
@@ -125,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putBoolean("edit", true);
             bundle.putParcelable("person", Parcels.wrap(listPerson.get(i)));
-            Intent intent = new Intent(this, EditPersonActivity.class);
+            Intent intent = new Intent(this, EditTrophyActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);
         });
@@ -133,9 +130,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListViewLongClickListener(){
         listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
-            Person person = listPerson.get(i);
+            Trophy person = listPerson.get(i);
             new AlertDialog.Builder(this)
-                    .setTitle("Delete " + person.getFirstName() + " " + person.getLastName())
+                    .setTitle("Delete " + person.getSport() + " " + person.getYear())
                     .setMessage("Do you want to delete the selected record?")
                     .setPositiveButton("Delete", (dialogInterface, i1) -> {
                         databaseReference.child(person.getKey()).removeValue();
@@ -151,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setFabClickListener() {
         fab.setOnClickListener(e -> {
-            startActivity(new Intent(this, EditPersonActivity.class));
+            startActivity(new Intent(this, EditTrophyActivity.class));
         });
     }
 }

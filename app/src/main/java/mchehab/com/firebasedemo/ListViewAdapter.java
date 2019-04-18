@@ -15,9 +15,9 @@ import java.util.List;
 public class ListViewAdapter extends BaseAdapter {
 
     private Activity activity;
-    private List<Person> listPerson;
+    private List<Trophy> listPerson;
 
-    public ListViewAdapter(Activity activity, List<Person> listPerson){
+    public ListViewAdapter(Activity activity, List<Trophy> listPerson){
         this.activity = activity;
         this.listPerson = listPerson;
     }
@@ -54,9 +54,9 @@ public class ListViewAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        holder.textViewFirstName.setText(listPerson.get(position).getFirstName());
-        holder.textViewLastName.setText(listPerson.get(position).getLastName());
-        holder.textViewAge.setText(listPerson.get(position).getAge() + "");
+        holder.textViewFirstName.setText(listPerson.get(position).getSport());
+        holder.textViewLastName.setText(listPerson.get(position).getYear());
+        holder.textViewAge.setText(listPerson.get(position).getDescription() + "");
 
         return convertView;
     }

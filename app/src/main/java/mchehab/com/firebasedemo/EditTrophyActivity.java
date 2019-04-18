@@ -10,7 +10,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.parceler.Parcels;
 
-public class EditPersonActivity extends AppCompatActivity {
+public class EditTrophyActivity extends AppCompatActivity {
 
     private EditText editTextFirstName;
     private EditText editTextLastName;
@@ -19,14 +19,14 @@ public class EditPersonActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
 
-    private Person person = new Person();
+    private Trophy person = new Trophy();
 
     private boolean edit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_person);
+        setContentView(R.layout.activity_edit_trophy);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -44,20 +44,20 @@ public class EditPersonActivity extends AppCompatActivity {
     }
 
     private void initUIFromPerson(){
-        editTextFirstName.setText(person.getFirstName());
-        editTextLastName.setText(person.getLastName());
-        editTextAge.setText(person.getAge() + "");
+        editTextFirstName.setText(person.getSport());
+        editTextLastName.setText(person.getYear());
+        editTextAge.setText(person.getDescription() + "");
     }
 
     private void setButtonOnClickListener(){
         button.setOnClickListener(e -> {
             String firstName = editTextFirstName.getText().toString();
             String lastName = editTextLastName.getText().toString();
-            int age = Integer.parseInt(editTextAge.getText().toString());
+            String age = editTextAge.getText().toString();
 
-            person.setFirstName(firstName);
-            person.setLastName(lastName);
-            person.setAge(age);
+            person.setSport(firstName);
+            person.setYear(lastName);
+            person.setDescription(age);
 
             if(edit){
                 databaseReference.child(person.getKey()).setValue(person);

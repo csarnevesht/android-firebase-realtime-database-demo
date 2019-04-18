@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="mchehab.com.firebasedemo.EditPersonActivity">
+    tools:context="mchehab.com.firebasedemo.EditTrophyActivity">
 
     <EditText
         android:id="@+id/editTextFirstName"
