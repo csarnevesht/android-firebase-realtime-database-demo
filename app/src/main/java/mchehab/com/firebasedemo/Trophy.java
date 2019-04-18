@@ -61,7 +61,7 @@ public class Trophy {
             return false;
         if(!Trophy.class.isAssignableFrom(object.getClass()))
             return false;
-        final Trophy person = (Trophy)object;
-        return person.getKey().equals(key);
+        final Trophy trophy = (Trophy)object;
+        return trophy.getKey().equals(key);
     }
 }

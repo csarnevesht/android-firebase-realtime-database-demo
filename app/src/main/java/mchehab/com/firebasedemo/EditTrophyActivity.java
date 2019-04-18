@@ -19,7 +19,7 @@ public class EditTrophyActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
 
-    private Trophy person = new Trophy();
+    private Trophy trophy = new Trophy();
 
     private boolean edit = false;
 
@@ -33,7 +33,7 @@ public class EditTrophyActivity extends AppCompatActivity {
         initUI();
         setButtonOnClickListener();
         handleBundle();
-        initUIFromPerson();
+        initUIFromTrophy();
     }
 
     private void initUI(){
@@ -43,28 +43,28 @@ public class EditTrophyActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
     }
 
-    private void initUIFromPerson(){
-        editTextSport.setText(person.getSport());
-        editTextYear.setText(person.getYear());
-        editTextDescription.setText(person.getDescription() + "");
+    private void initUIFromTrophy(){
+        editTextSport.setText(trophy.getSport());
+        editTextYear.setText(trophy.getYear());
+        editTextDescription.setText(trophy.getDescription());
     }
 
     private void setButtonOnClickListener(){
         button.setOnClickListener(e -> {
-            String firstName = editTextSport.getText().toString();
-            String lastName = editTextYear.getText().toString();
-            String age = editTextDescription.getText().toString();
+            String sport = editTextSport.getText().toString();
+            String year = editTextYear.getText().toString();
+            String description = editTextDescription.getText().toString();
 
-            person.setSport(firstName);
-            person.setYear(lastName);
-            person.setDescription(age);
+            trophy.setSport(sport);
+            trophy.setYear(year);
+            trophy.setDescription(description);
 
             if(edit){
-                databaseReference.child(person.getKey()).setValue(person);
+                databaseReference.child(trophy.getKey()).setValue(trophy);
             }else{
                 String key = databaseReference.push().getKey();
-                person.setKey(key);
-                databaseReference.child(key).setValue(person);
+                trophy.setKey(key);
+                databaseReference.child(key).setValue(trophy);
             }
             finish();
         });
@@ -75,7 +75,7 @@ public class EditTrophyActivity extends AppCompatActivity {
         if(bundle != null){
             edit = bundle.getBoolean("edit");
             if(edit){
-                person = Parcels.unwrap(bundle.getParcelable("person"));
+                trophy = Parcels.unwrap(bundle.getParcelable("trophy"));
             }
         }
     }

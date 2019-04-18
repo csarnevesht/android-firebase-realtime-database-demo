@@ -67,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Trophy person = dataSnapshot.getValue(Trophy.class);
-                if(person != null){
-                    person.setKey(dataSnapshot.getKey());
+                Trophy trophy = dataSnapshot.getValue(Trophy.class);
+                if(trophy != null){
+                    trophy.setKey(dataSnapshot.getKey());
                     listTrophy.add(dataSnapshot.getValue(Trophy.class));
                     listViewAdapter.notifyDataSetChanged();
                 }
@@ -77,13 +77,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Trophy person = dataSnapshot.getValue(Trophy.class);
-                if(person != null){
+                Trophy trophy = dataSnapshot.getValue(Trophy.class);
+                if(trophy != null){
                     String key = dataSnapshot.getKey();
                     for(int i = 0; i< listTrophy.size(); i++){
-                        Trophy person1 = listTrophy.get(i);
-                        if(person1.getKey().equals(key)){
-                            listTrophy.set(i, person);
+                        Trophy trophy1 = listTrophy.get(i);
+                        if(trophy1.getKey().equals(key)){
+                            listTrophy.set(i, trophy);
                             listViewAdapter.notifyDataSetChanged();
                             return;
                         }
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             Bundle bundle = new Bundle();
             bundle.putBoolean("edit", true);
-            bundle.putParcelable("person", Parcels.wrap(listTrophy.get(i)));
+            bundle.putParcelable("trophy", Parcels.wrap(listTrophy.get(i)));
             Intent intent = new Intent(this, EditTrophyActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -130,12 +130,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListViewLongClickListener(){
         listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
-            Trophy person = listTrophy.get(i);
+            Trophy trophy = listTrophy.get(i);
             new AlertDialog.Builder(this)
-                    .setTitle("Delete " + person.getSport() + " " + person.getYear())
+                    .setTitle("Delete " + trophy.getSport() + " " + trophy.getYear())
                     .setMessage("Do you want to delete the selected record?")
                     .setPositiveButton("Delete", (dialogInterface, i1) -> {
-                        databaseReference.child(person.getKey()).removeValue();
+                        databaseReference.child(trophy.getKey()).removeValue();
                     })
                     .setNegativeButton("Cancel", (dialogInterface, i12) -> {
                         dialogInterface.dismiss();
