@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private ListView listView;
     private ListViewAdapter listViewAdapter;
-    private List<Trophy> listPerson = new ArrayList<>();
+    private List<Trophy> listTrophy = new ArrayList<>();
 
     private ProgressBar progressBar;
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setListViewAdapter(){
-        listViewAdapter = new ListViewAdapter(this, listPerson);
+        listViewAdapter = new ListViewAdapter(this, listTrophy);
         listView.setAdapter(listViewAdapter);
     }
 
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 Trophy person = dataSnapshot.getValue(Trophy.class);
                 if(person != null){
                     person.setKey(dataSnapshot.getKey());
-                    listPerson.add(dataSnapshot.getValue(Trophy.class));
+                    listTrophy.add(dataSnapshot.getValue(Trophy.class));
                     listViewAdapter.notifyDataSetChanged();
                 }
             }
@@ -80,10 +80,10 @@ public class MainActivity extends AppCompatActivity {
                 Trophy person = dataSnapshot.getValue(Trophy.class);
                 if(person != null){
                     String key = dataSnapshot.getKey();
-                    for(int i=0;i<listPerson.size();i++){
-                        Trophy person1 = listPerson.get(i);
+                    for(int i = 0; i< listTrophy.size(); i++){
+                        Trophy person1 = listTrophy.get(i);
                         if(person1.getKey().equals(key)){
-                            listPerson.set(i, person);
+                            listTrophy.set(i, person);
                             listViewAdapter.notifyDataSetChanged();
                             return;
                         }
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                listPerson.remove(dataSnapshot.getValue(Trophy.class));
+                listTrophy.remove(dataSnapshot.getValue(Trophy.class));
                 listViewAdapter.notifyDataSetChanged();
             }
 
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             Bundle bundle = new Bundle();
             bundle.putBoolean("edit", true);
-            bundle.putParcelable("person", Parcels.wrap(listPerson.get(i)));
+            bundle.putParcelable("person", Parcels.wrap(listTrophy.get(i)));
             Intent intent = new Intent(this, EditTrophyActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListViewLongClickListener(){
         listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
-            Trophy person = listPerson.get(i);
+            Trophy person = listTrophy.get(i);
             new AlertDialog.Builder(this)
                     .setTitle("Delete " + person.getSport() + " " + person.getYear())
                     .setMessage("Do you want to delete the selected record?")

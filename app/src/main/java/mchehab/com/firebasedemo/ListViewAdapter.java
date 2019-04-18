@@ -15,22 +15,22 @@ import java.util.List;
 public class ListViewAdapter extends BaseAdapter {
 
     private Activity activity;
-    private List<Trophy> listPerson;
+    private List<Trophy> listTrophy;
 
-    public ListViewAdapter(Activity activity, List<Trophy> listPerson){
+    public ListViewAdapter(Activity activity, List<Trophy> listTrophy){
         this.activity = activity;
-        this.listPerson = listPerson;
+        this.listTrophy = listTrophy;
     }
 
     @Override
     public int getCount() {
-        return listPerson.size();
+        return listTrophy.size();
     }
 
     @Override
     public Object getItem(int position) {
 
-        return listPerson.get(position);
+        return listTrophy.get(position);
     }
 
     @Override
@@ -54,9 +54,9 @@ public class ListViewAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        holder.editTextSport.setText(listPerson.get(position).getSport());
-        holder.textViewYear.setText(listPerson.get(position).getYear());
-        holder.textViewDescription.setText(listPerson.get(position).getDescription() + "");
+        holder.editTextSport.setText(listTrophy.get(position).getSport());
+        holder.textViewYear.setText(listTrophy.get(position).getYear());
+        holder.textViewDescription.setText(listTrophy.get(position).getDescription() + "");
 
         return convertView;
     }
