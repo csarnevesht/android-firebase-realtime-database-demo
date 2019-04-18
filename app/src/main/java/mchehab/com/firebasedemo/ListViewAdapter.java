@@ -45,25 +45,25 @@ public class ListViewAdapter extends BaseAdapter {
             convertView = activity.getLayoutInflater().inflate(R.layout.row_listview, null);
 
             holder = new ViewHolder();
-            holder.textViewFirstName = convertView.findViewById(R.id.textViewFirstName);
-            holder.textViewLastName = convertView.findViewById(R.id.textViewLastName);
-            holder.textViewAge = convertView.findViewById(R.id.textViewAge);
+            holder.editTextSport = convertView.findViewById(R.id.editTextSport);
+            holder.textViewYear = convertView.findViewById(R.id.textViewYear);
+            holder.textViewDescription = convertView.findViewById(R.id.textViewDescription);
 
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder)convertView.getTag();
         }
 
-        holder.textViewFirstName.setText(listPerson.get(position).getSport());
-        holder.textViewLastName.setText(listPerson.get(position).getYear());
-        holder.textViewAge.setText(listPerson.get(position).getDescription() + "");
+        holder.editTextSport.setText(listPerson.get(position).getSport());
+        holder.textViewYear.setText(listPerson.get(position).getYear());
+        holder.textViewDescription.setText(listPerson.get(position).getDescription() + "");
 
         return convertView;
     }
 
     class ViewHolder{
-        TextView textViewFirstName;
-        TextView textViewLastName;
-        TextView textViewAge;
+        TextView editTextSport;
+        TextView textViewYear;
+        TextView textViewDescription;
     }
 }

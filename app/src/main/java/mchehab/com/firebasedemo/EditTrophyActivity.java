@@ -12,9 +12,9 @@ import org.parceler.Parcels;
 
 public class EditTrophyActivity extends AppCompatActivity {
 
-    private EditText editTextFirstName;
-    private EditText editTextLastName;
-    private EditText editTextAge;
+    private EditText editTextSport;
+    private EditText editTextYear;
+    private EditText editTextDescription;
     private Button button;
 
     private DatabaseReference databaseReference;
@@ -37,23 +37,23 @@ public class EditTrophyActivity extends AppCompatActivity {
     }
 
     private void initUI(){
-        editTextFirstName = findViewById(R.id.editTextFirstName);
-        editTextLastName = findViewById(R.id.editTextLastName);
-        editTextAge = findViewById(R.id.editTextAge);
+        editTextSport = findViewById(R.id.editTextSport);
+        editTextYear = findViewById(R.id.editTextYear);
+        editTextDescription = findViewById(R.id.editTextDescription);
         button = findViewById(R.id.button);
     }
 
     private void initUIFromPerson(){
-        editTextFirstName.setText(person.getSport());
-        editTextLastName.setText(person.getYear());
-        editTextAge.setText(person.getDescription() + "");
+        editTextSport.setText(person.getSport());
+        editTextYear.setText(person.getYear());
+        editTextDescription.setText(person.getDescription() + "");
     }
 
     private void setButtonOnClickListener(){
         button.setOnClickListener(e -> {
-            String firstName = editTextFirstName.getText().toString();
-            String lastName = editTextLastName.getText().toString();
-            String age = editTextAge.getText().toString();
+            String firstName = editTextSport.getText().toString();
+            String lastName = editTextYear.getText().toString();
+            String age = editTextDescription.getText().toString();
 
             person.setSport(firstName);
             person.setYear(lastName);

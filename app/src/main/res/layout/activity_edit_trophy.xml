@@ -8,15 +8,15 @@
     tools:context="mchehab.com.firebasedemo.EditTrophyActivity">
 
     <EditText
-        android:id="@+id/editTextFirstName"
+        android:id="@+id/editTextSport"
         style="@style/editText"/>
 
     <EditText
-        android:id="@+id/editTextLastName"
+        android:id="@+id/editTextYear"
         style="@style/editText"/>
 
     <EditText
-        android:id="@+id/editTextAge"
+        android:id="@+id/editTextDescription"
         style="@style/editText"/>
 
     <Button
