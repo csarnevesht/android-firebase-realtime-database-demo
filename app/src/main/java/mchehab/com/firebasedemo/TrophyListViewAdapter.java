@@ -12,12 +12,12 @@ import java.util.List;
  * Created by muhammadchehab on 1/11/18.
  */
 
-public class ListViewAdapter extends BaseAdapter {
+public class TrophyListViewAdapter extends BaseAdapter {
 
     private Activity activity;
     private List<Trophy> listTrophy;
 
-    public ListViewAdapter(Activity activity, List<Trophy> listTrophy){
+    public TrophyListViewAdapter(Activity activity, List<Trophy> listTrophy){
         this.activity = activity;
         this.listTrophy = listTrophy;
     }
